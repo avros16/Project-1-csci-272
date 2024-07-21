@@ -70,7 +70,7 @@ cout << "\n\nAre you ready to play? (Y/N) ";
 cout << "\n\n\n\nBANG!!!!!! \n\n\n\nAND THEY ARE OFF!!!!!\n\n";
 
 
-if (Tpos < 70 || Hpos <70) {
+while (Tpos < 70 || Hpos <70) {
     
 Hadd = HarePos(arrH);
 Tadd = TurtlePos(arrT);
