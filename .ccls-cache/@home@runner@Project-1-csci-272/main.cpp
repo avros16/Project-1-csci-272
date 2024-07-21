@@ -44,18 +44,15 @@ int Tadd{0};
     
     int arrT[10] ={0,0,0,0,0,1,1,2,2,2};
     
- // if(Hadd == 0) {
- //     cout << "Hare landed on 'sleep' and has advanced 0 moves";
- // } else if (Hadd==1) { 
- //     cout << "Hare landed on 'big hop' and has advanced 9 squares to the right";
- // } else if (Hadd ==2) {
- //     cout << "Hare landed on 'big slip' and has advanced 12 squares to the left";
+ // if(Tadd == 0) {
+ //     cout << "Tortoise landed on 'fast plod' and has advanced 3 squares to the right";
+ // } else if (Tadd==1) { 
+ //     cout << "Tortoise landed on 'slip' and has advanced 6 squares to the right";
+ // } else if (Tadd ==2) {
+ //     cout << "Tortoise landed on 'slow plod' and has advanced 1 squares to the left";
+    
      
- // } else if (Hadd ==3) {
- //     cout << "Hare landed on 'small hop' and has advanced 1 move to the right";
- // } else if (Hadd == 4) {
- //     cout << "Hare landed on 'small slip' and has advanced 2 squares to the left";
- // }
+
 
 
     
@@ -70,10 +67,10 @@ cout << "\n\nAre you ready to play? (Y/N) ";
 cout << "\n\n\n\nBANG!!!!!! \n\n\n\nAND THEY ARE OFF!!!!!\n\n";
 
 
-while (Tpos < 70 || Hpos <70) {
+while (Tpos < 70 && Hpos <70) {
     
 Hadd = HarePos(arrH);
-Tadd = TurtlePos(arrT);
+
 
     if(Hadd == 0) {
          cout << "Hare landed on 'sleep' and has advanced 0 moves";
@@ -87,6 +84,18 @@ Tadd = TurtlePos(arrT);
      } else if (Hadd == 4) {
          cout << "Hare landed on 'small slip' and has advanced 2 squares to the left";
      }
+
+
+Tadd = TurtlePos(arrT);
+
+    if(Tadd == 0) {
+         cout << "Tortoise landed on 'fast plod' and has advanced 3 squares to the right";
+     } else if (Tadd==1) { 
+         cout << "Tortoise landed on 'slip' and has advanced 6 squares to the right";
+     } else if (Tadd ==2) {
+         cout << "Tortoise landed on 'slow plod' and has advanced 1 squares to the left";
+    }
+
     
 Hpos= Hpos + Hadd;
 Tpos= Tpos + Tadd;
@@ -94,8 +103,8 @@ Tpos= Tpos + Tadd;
 
     
 
-Tpos = TurtlePos(arrT);
-      //cout <<Tpos<< "t1\n\n\n";
+
+ 
 
 
 }
