@@ -5,61 +5,90 @@ using namespace std;
 
 
 
-int HarePos (int arrH[10]) {
+void moveHare (int &harePos, const int arrH[10], int &hareMove) {
     //srand(time(0));
-int Randomnum = rand()%10;
-
-
-    if(arrH[Randomnum] == 0) {
-         cout << "Hare landed on 'sleep' and has advanced 0 moves";
-     } else if (arrH[Randomnum]==1) { 
-         cout << "Hare landed on 'big hop' and has advanced 9 squares to the right";
-     } else if (arrH[Randomnum] ==2) {
-         cout << "Hare landed on 'big slip' and has advanced 12 squares to the left";
-
-     } else if (arrH[Randomnum] ==3) {
-         cout << "Hare landed on 'small hop' and has advanced 1 move to the right";
-     } else if (arrH[Randomnum]== 4) {
-         cout << "Hare landed on 'small slip' and has advanced 2 squares to the left";
-     }
-
+hareMove = rand()%10;
     
-    
-  return  0;
-      ;
+    if (arrH[hareMove] == 0) {
+        // Sleep, no move
+    } else if (arrH[hareMove] == 1) {
+        harePos += 9;  // Big hop
+    } else if (arrH[hareMove] == 2) {
+        harePos -= 12;  // Big slip
+    } else if (arrH[hareMove] == 3) {
+        harePos += 1;  // Small hop
+    } else if (arrH[hareMove] == 4) {
+        harePos -= 2;  // Small slip
+    }
+
+    if (harePos < 1) {
+        harePos = 1;
+    }
+    if (harePos > 70) {
+        harePos = 70;
+    }
+
+
 }
 
 
 
-int TurtlePos(int arrT[10]) {
+void moveTortoise(int &tortoisePos, const int arrT[10], int &tortoiseMove) {
     //srand(time(0));
-    int Randomnum = rand()%10;
+    tortoiseMove = rand()%10;
 
-    if(arrT[Randomnum] == 0) {
-         cout << "Tortoise landed on 'fast plod' and has advanced 3 squares to the right";
-     } else if (arrT[Randomnum]==1) { 
-         cout << "Tortoise landed on 'slip' and has advanced 6 squares to the right";
-     } else if (arrT[Randomnum]==2) {
-         cout << "Tortoise landed on 'slow plod' and has advanced 1 squares to the right";
-        
+    if (arrT[tortoiseMove] == 0) {
+        // No move or slow plod, same effect
+        tortoisePos += 1;  // Slow plod
+    } else if (arrT[tortoiseMove] == 1) {
+        tortoisePos += 3;  // Fast plod
+    } else if (arrT[tortoiseMove] == 2) {
+        tortoisePos -= 6;  // Slip
+    }
+
+    if (tortoisePos < 1) {
+        tortoisePos = 1;
+    }
+    if (tortoisePos > 70) {
+        tortoisePos = 70;
+    }
+
+      
+         
 }
-     return 0; 
-         ;
+
+
+void drawingposition(int tortoisePos, int harePos) {
+    for (int i = 1; i <= 70; ++i) {
+        if (i == tortoisePos && i == harePos) {
+            cout << "OUCH!!!";
+            i += 5;  // Skip the next 5 positions since "OUCH!!!" is 6 characters long
+        } else if (i == tortoisePos) {
+            cout << 'T';
+        } else {
+            cout << '-';
+        }
+    }
+    cout << endl;
+
+    for (int i = 1; i <= 70; ++i) {
+        if (i == harePos) {
+            cout << 'H';
+        } else {
+            cout << '-';
+        }
+    }
+    cout << endl;
 }
-
-
-
-
-
 
 int main() {
   
 string answer;
-string answer1;
-int Hpos{0};
-int Tpos{0};
-int Hadd{0};
-int Tadd{0};
+int harePos{0};
+int tortoisePos{0};
+int hareMove, tortoiseMove;
+//int Hadd{0};
+//int Tadd{0};
   
 
     srand(time(0));
@@ -77,31 +106,35 @@ cout << "\n\nAre you ready to play? (Y/N) ";
 cout << "\n\n\n\nBANG!!!!!! \n\n\n\nAND THEY ARE OFF!!!!!\n\n";
 
 
-while (Tpos < 70 && Hpos <70) {
-    
-Hadd = HarePos(arrH);
-Tadd = TurtlePos(arrT);
-Hpos= Hpos + Hadd;
-Tpos= Tpos + Tadd;
-    
-    cout << "Score for Hare: " << Hpos << "\nScore for Turtle: " << Tpos;
+while (tortoisePos < 70 && harePos < 70) {
+   
+    moveTortoise(tortoisePos, arrT, tortoiseMove);
+    moveHare(harePos, arrH, hareMove);
+    drawingposition(tortoisePos, harePos);
+    cout << "\n\n\n";  
 
-    
-
-
+   // cout << "Tortoise random move number: " << tortoiseMove << endl;
+   // cout << "Hare random move number: " << hareMove << endl;
  
 
 
 }
 
+      if (tortoisePos >= 70 && harePos >= 70) {
+          cout << "It's a tie!\n";
+      } else if (tortoisePos >= 70) {
+          cout << "Tortoise wins!\n";
+      } else {
+          cout << "Hare wins!\n";
+      }
+      
+
 
       
 
 
-
-
       
-  } if (answer == "N" || answer == "n") {
+  } else if (answer == "N" || answer == "n") {
   
 cout << "inside the No";
     }
